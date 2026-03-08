@@ -1,27 +1,26 @@
 <?php 
-class User{
+class Student{
     private $connDB;
-    public $id;
-    public $username;
-    public $email;
-    public $password;
+    public $studentID;
+    public $studentName;
+    public $studentEmail;
 
     public function __construct($db){
         $this->connDB = $db;
     }
 
     public function read(){
-        $query = "SELECT * FROM users";
+        $query = "SELECT * FROM students";
         $result = $this->connDB->query($query);
         
         return $result;
     }
 
     public function create(){
-        $query = "INSERT INTO users(username, password, email) VALUES('{$this->username}', '{$this->email}', '{$this->password}')";
+        $query = "INSERT INTO students(name email) VALUES('{$this->studentName}', '{$this->studentEmail}')";
         $result = $this->connDB->query($query);
 
-        return $result;
+        return $result
     }
 }
 ?>

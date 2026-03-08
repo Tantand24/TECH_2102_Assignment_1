@@ -22,5 +22,10 @@ class Student{
 
         return $result
     }
+
+    public function delete(){
+        $query = "DELETE FROM students WHERE id = ". $this->studentID;
+        return $this->connDB->query($query);
+    }
 }
 ?>

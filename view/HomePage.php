@@ -1,0 +1,16 @@
+<?php include 'partials/header.php'; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+</head>
+<body>
+
+<?php include 'partials/navi.php';?>
+
+<h1>Welcome to the Home Page</h1>
+
+<?php include 'partials/footer.php'; ?>

@@ -1,46 +1,43 @@
 <?php
 include "model/User.php";
+include_once 'model/Student.php';
 include_once ("config/Database.php");
 
 class UserController{
     private $UserModel;
+    private $StudentModel;
 
     public function __construct(){
         $database = new Database();
         $db = $database->connect();
         $this->UserModel = new User($db);
+        $this->StudentModel = new Student($db);
     }
 
-    public function addUser($User){
-        $this->UserModel->user = $user;
+    public function addUser($username, $email, $password){
+        $this->UserModel->username = $username;
+        $this->UserModel->email = $email;
+        $this->UserModel->password = $password;
+
         $result = $this->UserModel->create();
-
-        if($result){
-            $_SESSION["info"]="Task added successfully to database";
-            $_SESSION["is_successful"]=true;
-        } else {
-            $_SESSION["info"]="Task failed be added to database";
-            $_SESSION["is_successful"]=false;
-        }
-
-        header("Location:" . $_SERVER['PHP_SELF']);
-        exit();
     }
 
-    public function deleteUser($id){
-        $this->UserModel->id = $id;
-        $result = $this->UserModel->delete();
+    public function checkUser($username){
+        $this->UserModel->username = $username;
 
-        if($result){
-            $_SESSION["info"]="Task deleted successfully from database";
-            $_SESSION["is_successful"]=true;
+        //check if user exist
+        $check = $this->UserModel->user();
+        if($check != 0){
+            return true;
         } else {
-            $_SESSION["info"]="Task failed to be deleted from database";
-            $_SESSION["is_successful"]=false;
+            return false;
         }
+    }
 
-        header("Location:" . $_SERVER['PHP_SELF']);
-        exit();
+    public function getUser($username){
+        //get user
+        $result = $this->UserModel->getUser();
+        return $result;
     }
 
     public function index(){
@@ -48,6 +45,8 @@ class UserController{
     }
 
     public function Dashboard(){
+        $studentList = $this->StudentModel->read();
+
         include "view/DashboardView.php";
     }
 

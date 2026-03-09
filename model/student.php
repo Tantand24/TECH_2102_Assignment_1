@@ -17,7 +17,7 @@ class Student{
     }
 
     public function create(){
-        $query = "INSERT INTO students(name email) VALUES('{$this->studentName}', '{$this->studentEmail}')";
+        $query = "INSERT INTO students(name, email) VALUES('{$this->studentName}', '{$this->studentEmail}')";
         $result = $this->connDB->query($query);
 
         return $result;

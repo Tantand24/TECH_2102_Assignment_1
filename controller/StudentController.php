@@ -1,5 +1,5 @@
 <?php
-include "model/Student.php";
+include_once "model/Student.php";
 include_once ("config/Database.php");
 
 class StudentController{
@@ -12,19 +12,28 @@ class StudentController{
     }
 
      public function addStudent($studentName, $studentEmail){
-        $this->taskModel->task = $task;
-        $result = $this->taskModel->create();
+        $this->studentModel->studentName = $studentName;
+        $this->studentModel->studentEmail = $studentEmail;
+        $result = $this->studentModel->create();
 
         if($result){
-            $_SESSION["info"]="Task added successfully to database";
+            $_SESSION["info"]="Student added successfully to database";
             $_SESSION["is_successful"]=true;
         } else {
-            $_SESSION["info"]="Task failed be added to database";
+            $_SESSION["info"]="Student failed be added to database";
             $_SESSION["is_successful"]=false;
         }
 
-        header("Location:" . $_SERVER['PHP_SELF']);
-        exit();
     }
 
+    public function deleteStudent($id){
+        $this->studentModel->studentID = $id;
+        $result = $this->studentModel->delete();
+
+    }
+
+    public function getStudents(){
+        $result = $this->studentModel->read();
+        return $result;
+    }
 }

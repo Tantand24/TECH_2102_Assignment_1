@@ -1,8 +1,7 @@
 <?php
-    include ('controller/UserController.php');
+session_start();
+$_SESSION=[];
+session_destroy();
 
-    
-    $controller = new UserController();
-
-    $controller->LogoutPage();
+header("location: Login.php");
 ?>

@@ -23,5 +23,19 @@ class User{
 
         return $result;
     }
+
+    public function user(){
+        $query = "SELECT * FROM users WHERE username='{$this->username}' LIMIT 1" ;
+        $result = $this->connDB->query($query);
+
+        return mysqli_num_rows($result);
+    }
+
+    public function getUser(){
+        $query = "SELECT * FROM users WHERE username='{$this->username}' LIMIT 1" ;
+        $result = mysqli_fetch_assoc($this->connDB->query($query));
+
+        return $result;
+    }
 }
 ?>

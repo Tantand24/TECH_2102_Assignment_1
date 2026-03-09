@@ -20,7 +20,7 @@ class Student{
         $query = "INSERT INTO students(name email) VALUES('{$this->studentName}', '{$this->studentEmail}')";
         $result = $this->connDB->query($query);
 
-        return $result
+        return $result;
     }
 
     public function delete(){
